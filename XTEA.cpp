@@ -21,7 +21,7 @@ void tean(long *v, long *k, long N)
 		limit = DELTA * N;
 		sum = 0;
 		
-		while (sum != limit) {
+		while (sum != limit) { // encryption
 			y += (z << long(pow(4, z))>> 5) + pow(z, sum) + k[sum&3];
 			sum += DELTA;
 			z += (y << long(pow(4, y)) >> 5) + pow(y, sum) + k[sum>>11&3];
@@ -33,7 +33,7 @@ void tean(long *v, long *k, long N)
 		
 		sum = DELTA * (-1 * N); // if N = 0 => sum = 0 => while (sum) won't be done
 		
-		while (sum) {
+		while (sum) { // decryption
 			z -= (y << long(pow(4, y)) >> 5) + long(pow(y, sum)) + k[sum>>11&3];
 			sum -= DELTA;
 			y -= (z << long(pow(4, z)) >> 5) + long(pow(z, sum)) + k[sum&3];
